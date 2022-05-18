@@ -1,11 +1,11 @@
-package dev.asbyth.template;
+package me.sploky.sss;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-@Mod(modid = "forgetemplate", name = "Forge Template", version = "1.0")
-public class ForgeTemplate {
+@Mod(modid = "ssm", name = "Sploky's Skyblock Mod", version = "1.0")
+public class SplokysSkyblockMod {
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event) {
         // $USER = The username of the currently logged in user.

@@ -1,14 +1,14 @@
 [
   {
-    "modid": "forgetemplate",
-    "name": "ForgeTemplate",
-    "description": "An example template",
+    "modid": "ssm",
+    "name": "Sploky's Skyblock Mod",
+    "description": "A mod aimed to be customizable",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "url": "",
     "updateUrl": "",
     "authorList": [
-      ""
+      "Sploky"
     ],
     "credits": "",
     "logoFile": "",
