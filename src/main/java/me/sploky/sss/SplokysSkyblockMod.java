@@ -1,6 +1,7 @@
 package me.sploky.sss;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
@@ -8,8 +9,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 public class SplokysSkyblockMod {
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event) {
-        // $USER = The username of the currently logged in user.
-        // Simply prints out Hello, $USER.
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
         System.out.println("Hello, " + Minecraft.getMinecraft().getSession().getUsername() + "!");
     }
 }
