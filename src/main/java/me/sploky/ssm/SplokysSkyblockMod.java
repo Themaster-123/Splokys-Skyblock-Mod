@@ -8,10 +8,13 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-@Mod(modid = "ssm", name = "Sploky's Skyblock Mod", version = "1.0")
+@Mod(modid = SplokysSkyblockMod.MODID, name = "Sploky's Skyblock Mod", version = "1.0")
 public class SplokysSkyblockMod {
+    public static final String MODID = "ssm";
+
     public static SplokysSkyblockMod main;
     public RenderListener renderListener;
+
 
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event) {
