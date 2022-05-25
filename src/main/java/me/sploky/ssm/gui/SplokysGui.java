@@ -2,6 +2,7 @@ package me.sploky.ssm.gui;
 
 import me.sploky.ssm.SplokysSkyblockMod;
 import me.sploky.ssm.elements.Element;
+import me.sploky.ssm.gui.buttons.ElementBaseButton;
 import me.sploky.ssm.gui.buttons.ElementCornerButton;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -22,6 +23,7 @@ public class SplokysGui extends GuiScreen {
     public void initGui() {
         super.initGui();
         for (Element element : SplokysSkyblockMod.main.elements) {
+            buttonList.add(new ElementBaseButton(element));
             buttonList.add(new ElementCornerButton(element, 0));
             buttonList.add(new ElementCornerButton(element, 1));
             buttonList.add(new ElementCornerButton(element, 2));
