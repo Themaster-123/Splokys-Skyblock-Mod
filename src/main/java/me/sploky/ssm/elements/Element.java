@@ -52,4 +52,14 @@ public class Element {
         ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
         return (int) (positionY * scaledResolution.getScaledHeight());
     }
+
+    public void setScreenPositionX(int x) {
+        ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
+        this.positionX = (float)x / scaledResolution.getScaledWidth();
+    }
+
+    public void setScreenPositionY(int y) {
+        ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
+        this.positionY = (float)y / scaledResolution.getScaledHeight();
+    }
 }
