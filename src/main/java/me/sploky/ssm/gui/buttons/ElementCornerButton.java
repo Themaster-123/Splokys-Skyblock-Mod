@@ -8,14 +8,14 @@ import net.minecraft.client.gui.GuiButton;
 
 import java.awt.*;
 
-public class ElementButton extends GuiButton {
+public class ElementCornerButton extends GuiButton {
     public static final int CORNER_BUTTON_SIZE = 6;
 
     public Element element;
 
     protected int corner;
 
-    public ElementButton(Element element, int corner) {
+    public ElementCornerButton(Element element, int corner) {
         super(0, 0, 0, CORNER_BUTTON_SIZE, CORNER_BUTTON_SIZE, "");
         this.element = element;
         this.corner = corner;

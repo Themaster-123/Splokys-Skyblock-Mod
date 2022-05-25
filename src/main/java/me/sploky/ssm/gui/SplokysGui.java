@@ -2,7 +2,7 @@ package me.sploky.ssm.gui;
 
 import me.sploky.ssm.SplokysSkyblockMod;
 import me.sploky.ssm.elements.Element;
-import me.sploky.ssm.gui.buttons.ElementButton;
+import me.sploky.ssm.gui.buttons.ElementCornerButton;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class SplokysGui extends GuiScreen {
     protected boolean isHoldingCorner = false;
-    protected ElementButton currentlyHeldCorner = null;
+    protected ElementCornerButton currentlyHeldCorner = null;
 
     public SplokysGui() {
         super();
@@ -22,10 +22,10 @@ public class SplokysGui extends GuiScreen {
     public void initGui() {
         super.initGui();
         for (Element element : SplokysSkyblockMod.main.elements) {
-            buttonList.add(new ElementButton(element, 0));
-            buttonList.add(new ElementButton(element, 1));
-            buttonList.add(new ElementButton(element, 2));
-            buttonList.add(new ElementButton(element, 3));
+            buttonList.add(new ElementCornerButton(element, 0));
+            buttonList.add(new ElementCornerButton(element, 1));
+            buttonList.add(new ElementCornerButton(element, 2));
+            buttonList.add(new ElementCornerButton(element, 3));
 
         }
     }
@@ -42,10 +42,10 @@ public class SplokysGui extends GuiScreen {
     protected void actionPerformed(GuiButton button) throws IOException {
         super.actionPerformed(button);
 
-        if (button instanceof ElementButton) {
-            ElementButton elementButton = (ElementButton)button;
+        if (button instanceof ElementCornerButton) {
+            ElementCornerButton elementCornerButton = (ElementCornerButton)button;
             isHoldingCorner = true;
-            currentlyHeldCorner = elementButton;
+            currentlyHeldCorner = elementCornerButton;
         }
     }
 
@@ -68,7 +68,7 @@ public class SplokysGui extends GuiScreen {
         }
     }
 
-    protected void moveCorner(int x, int y, ElementButton button) {
+    protected void moveCorner(int x, int y, ElementCornerButton button) {
         Element element = button.element;
         int diffX = Math.abs(x - element.getScreenPositionX());
         element.sizeX = diffX * 2;
