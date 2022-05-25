@@ -3,12 +3,12 @@ package me.sploky.ssm;
 import me.sploky.ssm.commands.GuiCommand;
 import me.sploky.ssm.elements.Element;
 import me.sploky.ssm.listener.RenderListener;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
+import java.awt.*;
 import java.util.HashSet;
 
 @Mod(modid = SplokysSkyblockMod.MODID, name = SplokysSkyblockMod.NAME, version = "1.0")
@@ -19,13 +19,14 @@ public class SplokysSkyblockMod {
     public static SplokysSkyblockMod main;
     public RenderListener renderListener;
 
-    public HashSet<Element> ELEMENTS = new HashSet<>();
+    public HashSet<Element> elements = new HashSet<>();
 
 
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event) {
         main = this;
         renderListener = new RenderListener();
+        elements.add(new Element(.5f, .5f, 20, 20, new Color(217, 163, 52, 255)));
         registerListeners();
         registerCommands();
         System.out.println(NAME + "Started!");
