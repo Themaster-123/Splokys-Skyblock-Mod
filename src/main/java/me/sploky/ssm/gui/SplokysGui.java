@@ -13,7 +13,8 @@ import java.io.IOException;
 
 public class SplokysGui extends GuiScreen {
     protected boolean isHoldingCorner = false;
-    protected ElementCornerButton currentlyHeldCorner = null;
+    protected Element currentlyHeldElement = null;
+    protected boolean canMoveElement = false;
 
     public SplokysGui() {
         super();
@@ -47,7 +48,12 @@ public class SplokysGui extends GuiScreen {
         if (button instanceof ElementCornerButton) {
             ElementCornerButton elementCornerButton = (ElementCornerButton)button;
             isHoldingCorner = true;
-            currentlyHeldCorner = elementCornerButton;
+            currentlyHeldElement = elementCornerButton.element;
+        } else if (button instanceof ElementBaseButton) {
+            ElementBaseButton elementCornerButton = (ElementBaseButton)button;
+            isHoldingCorner = true;
+            currentlyHeldElement = elementCornerButton.element;
+            canMoveElement = true;
         }
     }
 
@@ -56,7 +62,12 @@ public class SplokysGui extends GuiScreen {
         super.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
 
         if (isHoldingCorner) {
-            moveCorner(mouseX, mouseY, currentlyHeldCorner);
+            if (!canMoveElement) {
+                moveCorner(mouseX, mouseY, currentlyHeldElement);
+            } else {
+                currentlyHeldElement.setScreenPositionX(mouseX);
+                currentlyHeldElement.setScreenPositionY(mouseY);
+            }
         }
     }
 
@@ -66,12 +77,12 @@ public class SplokysGui extends GuiScreen {
 
         if (isHoldingCorner) {
             isHoldingCorner = false;
-            currentlyHeldCorner = null;
+            currentlyHeldElement = null;
+            canMoveElement = false;
         }
     }
 
-    protected void moveCorner(int x, int y, ElementCornerButton button) {
-        Element element = button.element;
+    protected void moveCorner(int x, int y, Element element) {
         int diffX = Math.abs(x - element.getScreenPositionX());
         element.sizeX = diffX * 2;
         int diffY = Math.abs(y - element.getScreenPositionY());

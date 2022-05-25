@@ -17,12 +17,13 @@ public class ElementBaseButton extends GuiButton {
 
     @Override
     public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+        //super.drawButton(mc, mouseX, mouseY);
         resizeButton();
     }
 
     protected void resizeButton() {
         xPosition = element.getScreenPositionX() - element.sizeX / 2;
-        yPosition = element.getScreenPositionX() - element.sizeY / 2;
+        yPosition = element.getScreenPositionY() - element.sizeY / 2;
         width = element.sizeX;
         height = element.sizeY;
     }
