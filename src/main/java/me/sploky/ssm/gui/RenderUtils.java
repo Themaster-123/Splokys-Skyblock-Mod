@@ -21,7 +21,6 @@ public class RenderUtils {
     private static int blendFunctionDstFactor;
 
     public static void renderElements(Color baseColor, Consumer<Element> onRenderElement) {
-        Minecraft minecraft = Minecraft.getMinecraft();
 
         for (Element element : SplokysSkyblockMod.main.elements) {
             drawQuad(element.getScreenPositionX(), element.getScreenPositionY(),

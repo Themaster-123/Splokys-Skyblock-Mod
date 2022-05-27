@@ -26,6 +26,22 @@ public class Element {
         this.textColor = textColor;
     }
 
+    public Element(int positionX, int positionY, int sizeX, int sizeY, Color textColor) {
+        setScreenPositionX(positionX);
+        setScreenPositionY(positionY);
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
+        this.textColor = textColor;
+    }
+
+    public Element(float positionX, float positionY, int sizeX, int sizeY) {
+        this(positionX, positionY, sizeX, sizeY, new Color(217, 163, 52, 255));
+    }
+
+    public Element(int positionX, int positionY, int sizeX, int sizeY) {
+        this(positionX, positionY, sizeX, sizeY, new Color(217, 163, 52, 255));
+    }
+
 
     public String getText() {
         StringBuilder test = new StringBuilder();
