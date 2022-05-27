@@ -8,7 +8,7 @@ import net.minecraft.client.gui.GuiButton;
 
 import java.awt.*;
 
-public class ElementCornerButton extends GuiButton {
+public class ElementCornerButton extends GuiButton implements ElementButton {
     public static final int CORNER_BUTTON_SIZE = 6;
 
     public Element element;
@@ -52,4 +52,8 @@ public class ElementCornerButton extends GuiButton {
     }
 
 
+    @Override
+    public Element getElement() {
+        return element;
+    }
 }
