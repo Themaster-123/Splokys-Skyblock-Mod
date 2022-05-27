@@ -51,10 +51,5 @@ public class ElementCornerButton extends GuiButton {
         RenderUtils.drawQuad(xPosition, yPosition, CORNER_BUTTON_SIZE, CORNER_BUTTON_SIZE, Color.WHITE, Center.TOP_LEFT_CORNER);
     }
 
-    @Override
-    public void mouseReleased(int mouseX, int mouseY) {
-        super.mouseReleased(mouseX, mouseY);
-    }
-
 
 }

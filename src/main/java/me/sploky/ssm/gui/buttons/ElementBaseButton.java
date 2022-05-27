@@ -7,7 +7,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.Render;
 
-public class ElementBaseButton extends GuiButton {
+public class ElementBaseButton extends GuiButton implements ElementButton {
     public Element element;
 
     public ElementBaseButton(Element element) {
@@ -26,5 +26,10 @@ public class ElementBaseButton extends GuiButton {
         yPosition = element.getScreenPositionY() - element.sizeY / 2;
         width = element.sizeX;
         height = element.sizeY;
+    }
+
+    @Override
+    public Element getElement() {
+        return element;
     }
 }
