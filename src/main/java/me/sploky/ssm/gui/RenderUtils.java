@@ -23,12 +23,7 @@ public class RenderUtils {
     public static void renderElements(Color baseColor, Consumer<Element> onRenderElement) {
 
         for (Element element : SplokysSkyblockMod.main.elements) {
-            drawQuad(element.getScreenPositionX(), element.getScreenPositionY(),
-                    element.sizeX, element.sizeY, baseColor, Center.CENTER);
-
-            drawText(element.getText(), element.getScreenPositionX(),
-                    element.getScreenPositionY() + element.sizeY / 2, element.sizeX, element.sizeX, element.textColor, true, Center.BOTTOM_CENTER);
-
+            element.render(baseColor);
             onRenderElement.accept(element);
         }
     }

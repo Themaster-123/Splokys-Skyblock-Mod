@@ -1,5 +1,7 @@
 package me.sploky.ssm.elements;
 
+import me.sploky.ssm.gui.Center;
+import me.sploky.ssm.gui.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 
@@ -8,6 +10,9 @@ import java.util.HashSet;
 import java.util.Random;
 
 public class Element {
+    public static final Color DEFAULT_COLOR = new Color(0, 0, 0, 82);
+    public static final Color GUI_COLOR = Color.GRAY;
+
     public float positionX;
 
     public float positionY;
@@ -77,5 +82,14 @@ public class Element {
     public void setScreenPositionY(int y) {
         ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
         this.positionY = (float)y / scaledResolution.getScaledHeight();
+    }
+
+    public void render(Color baseColor) {
+        RenderUtils.drawQuad(getScreenPositionX(), getScreenPositionY(),
+                sizeX, sizeY, baseColor, Center.CENTER);
+
+        RenderUtils.drawText(getText(), getScreenPositionX(),
+                getScreenPositionY() + sizeY / 2, sizeX, sizeX, textColor, true, Center.BOTTOM_CENTER);
+
     }
 }

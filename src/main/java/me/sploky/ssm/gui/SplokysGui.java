@@ -3,6 +3,7 @@ package me.sploky.ssm.gui;
 import me.sploky.ssm.SplokysSkyblockMod;
 import me.sploky.ssm.elements.Element;
 import me.sploky.ssm.gui.buttons.ElementBaseButton;
+import me.sploky.ssm.gui.buttons.ElementButton;
 import me.sploky.ssm.gui.buttons.ElementCornerButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -29,6 +30,7 @@ public class SplokysGui extends GuiScreen {
     protected int m2MenuX = 0;
     protected int m2MenuY = 0;
     protected List<GuiButton> m2MenuButtons = new ArrayList<>();
+    protected Element m2MenuElement = null;
 
 
 
@@ -46,7 +48,7 @@ public class SplokysGui extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         drawRect(0, 0, width, height, new Color(0, 0, 0, 86).getRGB());
-        RenderUtils.renderElements(Color.GRAY);
+        RenderUtils.renderElements(Element.GUI_COLOR);
 
         RenderUtils.drawQuad(m2MenuX, m2MenuY, M2_MENU_SIZE_X, M2_MENU_SIZE_Y, Color.DARK_GRAY.darker(), Center.TOP_LEFT_CORNER);
 
@@ -78,7 +80,7 @@ public class SplokysGui extends GuiScreen {
             clearRightClickMenu();
             createButtons();
         } else if (button.id == 2) {
-           // Minecraft.getMinecraft().displayGuiScreen(new ElementEditGui(new ElementEditGui()));
+           Minecraft.getMinecraft().displayGuiScreen((new ElementEditGui(m2MenuElement)));
         }
     }
 
@@ -105,8 +107,8 @@ public class SplokysGui extends GuiScreen {
             for (GuiButton guiButton : this.buttonList) {
 
                 if (guiButton.mousePressed(minecraft, mouseX, mouseY)) {
-                    if (guiButton.id == 0) {
-
+                    if (guiButton.id == 0 && guiButton instanceof ElementButton) {
+                        m2MenuElement = ((ElementButton)guiButton).getElement();
                         createRightClickMenu(mouseX, mouseY, true);
                         return;
                     }

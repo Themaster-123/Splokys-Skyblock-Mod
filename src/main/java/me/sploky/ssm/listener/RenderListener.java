@@ -34,7 +34,7 @@ public class RenderListener {
     @SubscribeEvent
     public void onPostRenderGui(RenderGameOverlayEvent.Post event) {
         if (event.type != RenderGameOverlayEvent.ElementType.ALL || (Minecraft.getMinecraft().currentScreen instanceof SplokysGui)) return;
-        RenderUtils.renderElements(new Color(0, 0, 0, 82));
+        RenderUtils.renderElements(Element.DEFAULT_COLOR);
     }
 
 
