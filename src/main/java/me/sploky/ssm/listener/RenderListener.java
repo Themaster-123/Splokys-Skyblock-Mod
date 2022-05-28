@@ -1,23 +1,12 @@
 package me.sploky.ssm.listener;
 
-import me.sploky.ssm.SplokysSkyblockMod;
 import me.sploky.ssm.elements.Element;
-import me.sploky.ssm.gui.Center;
-import me.sploky.ssm.gui.RenderUtils;
+import me.sploky.ssm.gui.utils.RenderUtils;
 import me.sploky.ssm.gui.SplokysGui;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.Tuple;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.lwjgl.Sys;
-import org.lwjgl.opengl.GL11;
-
-import java.awt.*;
 
 public class RenderListener {
     private boolean openSplokyGui;
