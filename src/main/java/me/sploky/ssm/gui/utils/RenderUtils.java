@@ -1,4 +1,4 @@
-package me.sploky.ssm.gui;
+package me.sploky.ssm.gui.utils;
 
 import me.sploky.ssm.SplokysSkyblockMod;
 import me.sploky.ssm.elements.Element;
