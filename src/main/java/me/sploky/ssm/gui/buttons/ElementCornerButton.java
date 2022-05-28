@@ -1,8 +1,8 @@
 package me.sploky.ssm.gui.buttons;
 
 import me.sploky.ssm.elements.Element;
-import me.sploky.ssm.gui.Center;
-import me.sploky.ssm.gui.RenderUtils;
+import me.sploky.ssm.gui.utils.Center;
+import me.sploky.ssm.gui.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 

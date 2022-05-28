@@ -1,11 +1,8 @@
 package me.sploky.ssm.gui.buttons;
 
 import me.sploky.ssm.elements.Element;
-import me.sploky.ssm.gui.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.entity.Render;
 
 public class ElementBaseButton extends GuiButton implements ElementButton {
     public Element element;
@@ -17,7 +14,6 @@ public class ElementBaseButton extends GuiButton implements ElementButton {
 
     @Override
     public void drawButton(Minecraft mc, int mouseX, int mouseY) {
-        //super.drawButton(mc, mouseX, mouseY);
         resizeButton();
     }
 
