@@ -5,10 +5,11 @@ import me.sploky.ssm.elements.Element;
 import me.sploky.ssm.gui.buttons.ElementBaseButton;
 import me.sploky.ssm.gui.buttons.ElementButton;
 import me.sploky.ssm.gui.buttons.ElementCornerButton;
+import me.sploky.ssm.gui.utils.Center;
+import me.sploky.ssm.gui.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
 
 import javax.vecmath.Vector2f;
