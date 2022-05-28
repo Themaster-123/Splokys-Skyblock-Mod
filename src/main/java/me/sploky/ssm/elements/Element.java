@@ -1,15 +1,13 @@
 package me.sploky.ssm.elements;
 
-import me.sploky.ssm.gui.Center;
-import me.sploky.ssm.gui.RenderUtils;
+import me.sploky.ssm.gui.utils.Center;
+import me.sploky.ssm.gui.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 
 import java.awt.*;
-import java.util.HashSet;
-import java.util.Random;
 
-public class Element {
+public class Element implements Cloneable {
     public static final Color DEFAULT_COLOR = new Color(0, 0, 0, 82);
     public static final Color GUI_COLOR = Color.GRAY;
 
@@ -22,6 +20,8 @@ public class Element {
     public int sizeY;
 
     public Color textColor;
+
+    public String elementText = "";
 
     public Element(float positionX, float positionY, int sizeX, int sizeY, Color textColor) {
         this.positionX = positionX;
@@ -48,20 +48,8 @@ public class Element {
     }
 
 
-    public String getText() {
-        StringBuilder test = new StringBuilder();
-        long time = Minecraft.getMinecraft().theWorld.getTotalWorldTime() / 10;
-        Random random = new Random(time);
-
-        int length = (int) time % 10;
-        for (int i = 0; i < length; i++) {
-            if (random.nextBoolean()) {
-                test.append((char)(random.nextInt(26) + 65));
-                continue;
-            }
-            test.append((char)(random.nextInt(26) + 97));
-        }
-        return test.toString();
+    public String getTrueText() {
+        return elementText;
     }
 
     public int getScreenPositionX() {
@@ -88,8 +76,19 @@ public class Element {
         RenderUtils.drawQuad(getScreenPositionX(), getScreenPositionY(),
                 sizeX, sizeY, baseColor, Center.CENTER);
 
-        RenderUtils.drawText(getText(), getScreenPositionX(),
+        RenderUtils.drawText(getTrueText(), getScreenPositionX(),
                 getScreenPositionY() + sizeY / 2, sizeX, sizeX, textColor, true, Center.BOTTOM_CENTER);
 
+    }
+
+    @Override
+    public Element clone() {
+        try {
+
+
+            return (Element) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
