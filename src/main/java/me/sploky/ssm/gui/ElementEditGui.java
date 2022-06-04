@@ -10,11 +10,12 @@ import java.io.IOException;
 
 public class ElementEditGui extends GuiScreen {
     public final Element element;
-    public String elementText;
+    public String elementText = "";
 
     protected final Element trueElement;
 
     public ElementEditGui(Element element) {
+        elementText = element.elementText;
         trueElement = element;
         this.element = element.clone();
     }

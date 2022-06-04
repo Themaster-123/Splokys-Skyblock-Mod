@@ -20,8 +20,8 @@ public class GuiCommand extends CommandBase {
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-        System.out.println("test");
         SplokysSkyblockMod.main.renderListener.openSplokyGui();
+
     }
 
     @Override

@@ -27,7 +27,7 @@ public class TextEditGui extends GuiScreen {
         textField.setMaxStringLength(100);
         textField.setEnableBackgroundDrawing(false);
         textField.setFocused(true);
-        textField.setText("");
+        textField.setText(elementEditGui.element.elementText);
         textField.setCanLoseFocus(false);
 
         buttonList.add(new GuiButton(1, width / 2 - 200 / 2, height / 2 + 20 / 2 + 40 / 2, "Done"));

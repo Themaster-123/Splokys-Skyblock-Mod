@@ -40,16 +40,16 @@ public class Element implements Cloneable {
     }
 
     public Element(float positionX, float positionY, int sizeX, int sizeY) {
-        this(positionX, positionY, sizeX, sizeY, new Color(217, 163, 52, 255));
+        this(positionX, positionY, sizeX, sizeY, new Color(255, 170, 0));
     }
 
     public Element(int positionX, int positionY, int sizeX, int sizeY) {
-        this(positionX, positionY, sizeX, sizeY, new Color(217, 163, 52, 255));
+        this(positionX, positionY, sizeX, sizeY, new Color(255, 170, 0));
     }
 
 
     public String getTrueText() {
-        return elementText;
+        return ElementTextDecoder.decodeText(elementText);
     }
 
     public int getScreenPositionX() {

@@ -88,7 +88,6 @@ public class SplokysGui extends GuiScreen {
     @Override
     protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick) {
         super.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
-        System.out.println(isHoldingCorner + " " + canMoveElement);
 
         if (isHoldingCorner) {
             moveCorner(mouseX, mouseY, currentlyHeldElement);
