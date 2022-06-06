@@ -1,6 +1,5 @@
 package me.sploky.ssm.gui;
 
-import javafx.scene.input.KeyCode;
 import me.sploky.ssm.gui.utils.Center;
 import me.sploky.ssm.gui.utils.RenderUtils;
 import net.minecraft.client.Minecraft;

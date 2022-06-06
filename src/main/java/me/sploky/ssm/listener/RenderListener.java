@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public class RenderListener {
     private boolean openSplokyGui;
 
-
     @SubscribeEvent
     public void onRender(TickEvent.RenderTickEvent event) {
         if (openSplokyGui) {
