@@ -27,7 +27,12 @@ configurations {
 repositories {
     // Add maven repositories to your buildscript so that they can be used to resolve dependencies
     // maven "https://repo1.maven.org/maven2/"
-    maven { url "https://repo.hypixel.net/repository/Hypixel/" }
+    maven { url 'https://jitpack.io' }
+    maven {url 'https://repo.hypixel.net/repository/Hypixel'}
+
+}
+
+compileJava {
 
 }
 
@@ -36,9 +41,9 @@ dependencies {
     // implementation "com.example:example:1.0.0"
     // If you would like to include it (have the library inside your jar) instead use
     // include "com.example:example:1.0.0"
-    include 'net.hypixel:HypixelAPI:4.2'
+    include 'com.github.HypixelDev.PublicAPI:hypixel-api:4.2'
     include 'net.hypixel:hypixel-api-transport-apache:4.2'
-
+    implementation 'com.squareup:javapoet:1.13.0'
 }
 
 /**
