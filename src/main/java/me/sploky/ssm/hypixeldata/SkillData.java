@@ -5,7 +5,6 @@ import net.minecraft.client.Minecraft;
 public class SkillData implements HypixelData {
     public static long MINING_XP;
 
-
     public void GetData() {
         MINING_XP = HypixelUtils.SKYBLOCK_PROFILES.getProfiles().getAsJsonObject().getAsJsonObject("profiles").getAsJsonObject("2").
             getAsJsonObject("members").getAsJsonObject(Minecraft.getMinecraft().thePlayer.getUniqueID().toString()).
