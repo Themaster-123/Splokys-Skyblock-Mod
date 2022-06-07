@@ -30,4 +30,9 @@ public class ApiCommand extends CommandBase {
         }
 
     }
+
+    @Override
+    public int getRequiredPermissionLevel() {
+        return 0;
+    }
 }
