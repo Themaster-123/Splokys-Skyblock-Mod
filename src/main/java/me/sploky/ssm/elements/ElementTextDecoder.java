@@ -1,5 +1,6 @@
 package me.sploky.ssm.elements;
 
+import me.sploky.ssm.hypixeldata.SkillData;
 import net.minecraft.client.Minecraft;
 
 import java.util.HashMap;
@@ -16,7 +17,7 @@ public class ElementTextDecoder {
         StringBuilder stringBuilder = new StringBuilder(text);
 
         // decodes any part of the text that is surrounded with square brackets into a number
-        Pattern numberPattern = Pattern.compile("(?<=\\[)[^\\[\\] \\s]+(?=\\])");
+        Pattern numberPattern = Pattern.compile("(?<=\\[)[^\\[\\]]+(?=])");
         Matcher numberMatcher = numberPattern.matcher(text);
 
         int offset = 0;
@@ -66,7 +67,7 @@ public class ElementTextDecoder {
     }
 
     private static void initNumbers() {
-        numberDecodeMap.put("test", () -> (float) (Minecraft.getMinecraft().theWorld.getTotalWorldTime() % 100));
+        numberDecodeMap.put("mining skill", () -> (float) SkillData.MINING_XP);
         numberDecodeMap.put("e", () -> 69f);
     }
 
