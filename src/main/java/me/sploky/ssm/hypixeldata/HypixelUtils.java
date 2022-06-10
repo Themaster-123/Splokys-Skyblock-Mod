@@ -10,7 +10,9 @@ import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public final class HypixelUtils {
+    private static final int DATA_AMOUNT = 1;
     private static UUID API_KEY = null;
+    private static int dataHeld = 0;
     public static HypixelAPI API;
 
     public static SkyBlockProfilesReply SKYBLOCK_PROFILES;
@@ -27,26 +29,21 @@ public final class HypixelUtils {
 
     public static void fetchData() {
         if (API == null) return;
+        dataHeld = 0;
+        HypixelUtils.API.getSkyBlockProfiles(Minecraft.getMinecraft().thePlayer.getUniqueID()).
+                thenAccept(skyBlockProfilesReply -> {SKYBLOCK_PROFILES = skyBlockProfilesReply; dataHeld++; getData();});
 
-        try {
-            SKYBLOCK_PROFILES = HypixelUtils.API.getSkyBlockProfiles(Minecraft.getMinecraft().thePlayer.getUniqueID()).get();
-
-        } catch (ExecutionException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-        getData();
     }
 
     public static void getData() {
+        if (!hasAllData()) return;
+
         for (HypixelData data : SplokysSkyblockMod.main.hypixelDataSet) {
             data.GetData();
         }
     }
 
-    public static void updateData() {
-        for (HypixelData data : SplokysSkyblockMod.main.hypixelDataSet) {
-            data.UpdateData();
-        }
+    public static boolean hasAllData() {
+        return dataHeld >= DATA_AMOUNT;
     }
 }
