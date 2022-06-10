@@ -22,6 +22,7 @@ public class ApiCommand extends CommandBase {
     @Override
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
         try {
+            System.out.println(args[0]);
             UUID apiKey = UUID.fromString(args[0]);
             notifyOperators(sender, this, "commands.ssmapi.success", apiKey);
             HypixelUtils.setApiKey(apiKey);

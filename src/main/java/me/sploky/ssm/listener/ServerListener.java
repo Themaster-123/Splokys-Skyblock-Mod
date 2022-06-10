@@ -9,8 +9,5 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 public class ServerListener {
     @SubscribeEvent
     public void onClientConnectionToServer(FMLNetworkEvent.ClientConnectedToServerEvent event) {
-        if (Minecraft.getMinecraft().getCurrentServerData().serverIP.split("\\.", 2)[2].equals("hypixel.net")) {
-            HypixelUtils.fetchData();
-        }
     }
 }
