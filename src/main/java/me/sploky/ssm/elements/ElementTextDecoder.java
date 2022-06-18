@@ -1,5 +1,6 @@
 package me.sploky.ssm.elements;
 
+import me.sploky.ssm.hypixeldata.Skill;
 import me.sploky.ssm.hypixeldata.SkillData;
 import net.minecraft.client.Minecraft;
 
@@ -67,7 +68,7 @@ public class ElementTextDecoder {
     }
 
     private static void initNumbers() {
-        numberDecodeMap.put("mining skill", () -> (float) SkillData.MINING_XP);
+        numberDecodeMap.put("mining skill",  () -> (float) SkillData.MINING_XP.getXp());
         numberDecodeMap.put("e", () -> 69f);
     }
 
