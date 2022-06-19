@@ -6,7 +6,7 @@ public enum SkillType {
     COMBAT("Combat"),
     FORAGING("Foraging"),
     FISHING("Fishing"),
-    ENCHANTING("ENCHANTING"),
+    ENCHANTING("Enchanting"),
     ALCHEMY("Alchemy"),
     CARPENTRY("Carpentry"),
     RUNECRAFTING("Runecrafting"),
