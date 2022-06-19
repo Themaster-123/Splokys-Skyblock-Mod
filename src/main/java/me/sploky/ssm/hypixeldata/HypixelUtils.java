@@ -3,6 +3,8 @@ package me.sploky.ssm.hypixeldata;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import me.sploky.ssm.SplokysSkyblockMod;
+import me.sploky.ssm.elements.Element;
+import me.sploky.ssm.elements.ElementTextDecoder;
 import net.hypixel.api.HypixelAPI;
 import net.hypixel.api.apache.ApacheHttpClient;
 import net.hypixel.api.reply.ResourceReply;
@@ -54,6 +56,8 @@ public final class HypixelUtils {
 
     public static void getData() {
         if (!hasAllData()) return;
+
+        ElementTextDecoder.numberDecodeMap.clear();
 
         for (HypixelData data : SplokysSkyblockMod.main.hypixelDataSet) {
             data.GetData();

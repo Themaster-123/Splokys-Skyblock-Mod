@@ -68,8 +68,6 @@ public class ElementTextDecoder {
     }
 
     private static void initNumbers() {
-        numberDecodeMap.put("mining skill",  () -> (float) SkillData.MINING_XP.getXp());
-        numberDecodeMap.put("e", () -> 69f);
     }
 
     @SafeVarargs
