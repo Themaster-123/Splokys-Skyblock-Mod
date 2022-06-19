@@ -4,6 +4,7 @@ import me.sploky.ssm.hypixeldata.HypixelData;
 import me.sploky.ssm.hypixeldata.HypixelUtils;
 import me.sploky.ssm.hypixeldata.SkillData;
 import me.sploky.ssm.hypixeldata.SkillType;
+import me.sploky.ssm.utils.MathUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
@@ -44,7 +45,7 @@ public class PlayerListener {
                         replace("Your profile was changed to: ", "").split(" ")[0];
 
 
-                if (!HypixelUtils.hasAllData() || HypixelUtils.CURRENT_SKYBLOCK_PROFILE_NAME.equals(profileName)) {
+                if (!HypixelUtils.hasAllData() || !HypixelUtils.CURRENT_SKYBLOCK_PROFILE_NAME.equals(profileName)) {
                     HypixelUtils.CURRENT_SKYBLOCK_PROFILE_NAME = profileName;
 
                     HypixelUtils.fetchData();
@@ -58,9 +59,20 @@ public class PlayerListener {
             if (message.startsWith("  SKILL LEVEL UP ")) {
                 String[] skillData = message.replace("  SKILL LEVEL UP ", "").split(" ");
                 String skillName = skillData[0];
-                int level = Integer.parseInt(skillData[1]);
+                String number = skillData[1];
 
+                if (number.contains("➜")) {
+                    number = number.split("➜")[1];
+                }
 
+                int level = 0;
+                try {
+                    level = Integer.parseInt(number);
+                } catch (NumberFormatException e) {
+                    level = MathUtils.romanToNumber(number);
+                }
+
+                SkillData.getSkill(SkillType.valueOf(skillName.toUpperCase())).setLevel(level);
             }
         }
 
