@@ -42,7 +42,11 @@ public class ElementTextDecoder {
                 while (parenthesesMatcher.find()) {
                     StringBuilder parenthesesBuilder = new StringBuilder(parenthesesMatcher.group());
 
-                    runBasicMathDecoders(stringBuilder);
+                    runBasicMathDecoders(parenthesesBuilder);
+                    System.out.println(Integer.toString(offset) + " " + Integer.toString(parenthesesBuilder.length()));
+
+/*                    stringBuilder.replace(parenthesesMatcher.start() - 1 - offset, parenthesesMatcher.start() - offset, " ");
+                    stringBuilder.setCharAt(parenthesesMatcher.start() + parenthesesBuilder.length() - offset, ' ');*/
 
                     stringBuilder.replace(parenthesesMatcher.start() - 1 - offset, parenthesesMatcher.end() + 1 - offset,
                             parenthesesBuilder.toString());
