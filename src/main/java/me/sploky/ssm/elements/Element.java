@@ -4,6 +4,8 @@ import me.sploky.ssm.gui.utils.Center;
 import me.sploky.ssm.gui.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
+import org.json.simple.JSONObject;
+import scala.util.parsing.json.JSON;
 
 import java.awt.*;
 
@@ -79,6 +81,31 @@ public class Element implements Cloneable {
         RenderUtils.drawText(getTrueText(), getScreenPositionX(),
                 getScreenPositionY() + sizeY / 2, sizeX, sizeX, textColor, true, Center.BOTTOM_CENTER);
 
+    }
+
+    @SuppressWarnings("unchecked")
+    public static JSONObject toJsonObject(Element element) {
+        JSONObject elementObject = new JSONObject();
+        elementObject.put("text", element.elementText);
+        elementObject.put("posX", element.positionX);
+        elementObject.put("posY", element.positionY);
+        elementObject.put("sizeX", element.sizeX);
+        elementObject.put("sizeY", element.sizeY);
+        elementObject.put("colorR", element.textColor.getRed());
+        elementObject.put("colorG", element.textColor.getGreen());
+        elementObject.put("colorB", element.textColor.getBlue());
+
+        return elementObject;
+    }
+
+    public static Element fromJsonObject(JSONObject jsonObject) {
+        Element element = new Element((float)(double)jsonObject.get("posX"),
+                (float)(double)jsonObject.get("posY"),
+                (int)(long)jsonObject.get("sizeX"),
+                (int)(long)jsonObject.get("sizeY"),
+        new Color((int)(long)jsonObject.get("colorR"), (int)(long)jsonObject.get("colorG"), (int)(long)jsonObject.get("colorB")));
+        element.elementText = (String) jsonObject.get("text");
+        return element;
     }
 
     @Override
