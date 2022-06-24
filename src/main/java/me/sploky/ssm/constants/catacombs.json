@@ -1,0 +1,208 @@
+{
+  "CATACOMBS": {
+    "Name": "Catacombs",
+    "maxLevel": 50,
+    "levels": [
+      {
+        "level": 1,
+        "totalExpRequired": 50.0
+      },
+      {
+        "level": 2,
+        "totalExpRequired": 125.0
+      },
+      {
+        "level": 3,
+        "totalExpRequired": 235.0
+      },
+      {
+        "level": 4,
+        "totalExpRequired": 395.0
+      },
+      {
+        "level": 5,
+        "totalExpRequired": 625.0
+      },
+      {
+        "level": 6,
+        "totalExpRequired": 955.0
+      },
+      {
+        "level": 7,
+        "totalExpRequired": 1425.0
+      },
+      {
+        "level": 8,
+        "totalExpRequired": 2095.0
+      },
+      {
+        "level": 9,
+        "totalExpRequired": 3045.0
+      },
+      {
+        "level": 10,
+        "totalExpRequired": 4385.0
+      },
+      {
+        "level": 11,
+        "totalExpRequired": 6275.0
+      },
+      {
+        "level": 12,
+        "totalExpRequired": 8940.0
+      },
+      {
+        "level": 13,
+        "totalExpRequired": 12700.0
+      },
+      {
+        "level": 14,
+        "totalExpRequired": 17960.0
+      },
+      {
+        "level": 15,
+        "totalExpRequired": 25340.0
+      },
+      {
+        "level": 16,
+        "totalExpRequired": 35640.0
+      },
+      {
+        "level": 17,
+        "totalExpRequired": 50040.0
+      },
+      {
+        "level": 18,
+        "totalExpRequired": 70040.0
+      },
+      {
+        "level": 19,
+        "totalExpRequired": 97640.0
+      },
+      {
+        "level": 20,
+        "totalExpRequired": 135640.0
+      },
+      {
+        "level": 21,
+        "totalExpRequired": 188140.0
+      },
+      {
+        "level": 22,
+        "totalExpRequired": 259640.0
+      },
+      {
+        "level": 23,
+        "totalExpRequired": 356640.0
+      },
+      {
+        "level": 24,
+        "totalExpRequired": 488640.0
+      },
+      {
+        "level": 25,
+        "totalExpRequired": 668640.0
+      },
+      {
+        "level": 26,
+        "totalExpRequired": 911640.0
+      },
+      {
+        "level": 27,
+        "totalExpRequired": 1239640.0
+      },
+      {
+        "level": 28,
+        "totalExpRequired": 1684640.0
+      },
+      {
+        "level": 29,
+        "totalExpRequired": 2284640.0
+      },
+      {
+        "level": 30,
+        "totalExpRequired": 3084640.0
+      },
+      {
+        "level": 31,
+        "totalExpRequired": 4149640.0
+      },
+      {
+        "level": 32,
+        "totalExpRequired": 5559640.0
+      },
+      {
+        "level": 33,
+        "totalExpRequired": 7459640.0
+      },
+      {
+        "level": 34,
+        "totalExpRequired": 9959640.0
+      },
+      {
+        "level": 35,
+        "totalExpRequired": 13259640.0
+      },
+      {
+        "level": 36,
+        "totalExpRequired": 17559640.0
+      },
+      {
+        "level": 37,
+        "totalExpRequired": 23159640.0
+      },
+      {
+        "level": 38,
+        "totalExpRequired": 30359640.0
+      },
+      {
+        "level": 39,
+        "totalExpRequired": 39559640.0
+      },
+      {
+        "level": 40,
+        "totalExpRequired": 51559640.0
+      },
+      {
+        "level": 41,
+        "totalExpRequired": 66559640.0
+      },
+      {
+        "level": 42,
+        "totalExpRequired": 85559640.0
+      },
+      {
+        "level": 43,
+        "totalExpRequired": 109559640.0
+      },
+      {
+        "level": 44,
+        "totalExpRequired": 139559640.0
+      },
+      {
+        "level": 45,
+        "totalExpRequired": 177559640.0
+      },
+      {
+        "level": 46,
+        "totalExpRequired": 225559640.0
+      },
+      {
+        "level": 47,
+        "totalExpRequired": 285559640.0
+      },
+      {
+        "level": 48,
+        "totalExpRequired": 360559640.0
+      },
+      {
+        "level": 49,
+        "totalExpRequired": 453559640.0
+      },
+      {
+        "level": 50,
+        "totalExpRequired": 569809640.0
+      }
+    ]
+  }
+}
