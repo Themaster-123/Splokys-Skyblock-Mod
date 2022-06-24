@@ -3,6 +3,7 @@ package me.sploky.ssm;
 import me.sploky.ssm.commands.ApiCommand;
 import me.sploky.ssm.commands.GuiCommand;
 import me.sploky.ssm.elements.Element;
+import me.sploky.ssm.elements.ElementData;
 import me.sploky.ssm.elements.ElementTextDecoder;
 import me.sploky.ssm.hypixeldata.HypixelData;
 import me.sploky.ssm.hypixeldata.HypixelUtils;
@@ -15,6 +16,9 @@ import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLModDisabledEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 
 
 import java.awt.*;
@@ -30,19 +34,19 @@ public class SplokysSkyblockMod {
     public static SplokysSkyblockMod main;
     public RenderListener renderListener;
 
-    public HashSet<Element> elements = new HashSet<>();
     public HashSet<HypixelData> hypixelDataSet = new HashSet<>();
 
     @Mod.EventHandler
     public void onFMLInitialization(FMLInitializationEvent event) {
         main = this;
-        elements.add(new Element(.5f, .5f, 20, 20, new Color(217, 163, 52, 255)));
+        HypixelUtils.loadSavedData();
+        ElementData.loadSavedData();
         registerListeners();
         registerCommands();
         registerData();
         ElementTextDecoder.initDecoder();
         System.out.println(NAME + "Started!");
-
+        Runtime.getRuntime().addShutdownHook(new EndHook());
 
     }
 
