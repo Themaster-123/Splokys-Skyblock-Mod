@@ -3,7 +3,7 @@ package me.sploky.ssm.hypixeldata;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import me.sploky.ssm.SplokysSkyblockMod;
-import me.sploky.ssm.elements.Element;
+import me.sploky.ssm.configs.Config;
 import me.sploky.ssm.elements.ElementTextDecoder;
 import net.hypixel.api.HypixelAPI;
 import net.hypixel.api.apache.ApacheHttpClient;
@@ -22,6 +22,10 @@ public final class HypixelUtils {
     private static int dataHeld = 0;
     public static HypixelAPI API;
 
+    public static String HYPIXEL_DATA_CATEGORY = "Hypixel Data";
+
+    public static Config HYPIXEL_DATA_CONFIG = new Config("Hypixel_Data");
+
     public static SkyBlockProfilesReply SKYBLOCK_PROFILES;
     public static ResourceReply SKYBLOCK_SKILLS;
     public static JsonObject CURRENT_SKYBLOCK_PROFILE;
@@ -33,14 +37,20 @@ public final class HypixelUtils {
         return API_KEY;
     }
 
+    @SuppressWarnings("unchecked")
     public static void setApiKey(UUID apiKey) {
         API_KEY = apiKey;
         API = new HypixelAPI(new ApacheHttpClient(apiKey));
+        HYPIXEL_DATA_CONFIG.jsonObject.put("ApiKey", apiKey.toString());
+        HYPIXEL_DATA_CONFIG.save();
+
         fetchData();
     }
 
     public static void fetchData() {
         dataHeld = 0;
+        ElementTextDecoder.numberDecodeMap.clear();
+
 
         if (API == null || CURRENT_SKYBLOCK_PROFILE_NAME.equals("")) return;
 
@@ -57,8 +67,6 @@ public final class HypixelUtils {
     public static void getData() {
         if (!hasAllData()) return;
 
-        ElementTextDecoder.numberDecodeMap.clear();
-
         for (HypixelData data : SplokysSkyblockMod.main.hypixelDataSet) {
             data.GetData();
         }
@@ -66,6 +74,12 @@ public final class HypixelUtils {
 
     public static boolean hasAllData() {
         return dataHeld >= DATA_AMOUNT;
+    }
+
+    public static void loadSavedData() {
+        HYPIXEL_DATA_CONFIG.Load();
+        if (HYPIXEL_DATA_CONFIG.jsonObject.containsKey("ApiKey"))
+            setApiKey(UUID.fromString((String)HYPIXEL_DATA_CONFIG.jsonObject.get("ApiKey")));
     }
 
     private static void getCurrentProfileAndPlayer() {
