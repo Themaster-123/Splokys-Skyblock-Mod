@@ -2,6 +2,7 @@ package me.sploky.ssm.gui.utils;
 
 import me.sploky.ssm.SplokysSkyblockMod;
 import me.sploky.ssm.elements.Element;
+import me.sploky.ssm.elements.ElementData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -22,7 +23,7 @@ public class RenderUtils {
 
     public static void renderElements(Color baseColor, Consumer<Element> onRenderElement) {
 
-        for (Element element : SplokysSkyblockMod.main.elements) {
+        for (Element element : ElementData.ELEMENTS) {
             element.render(baseColor);
             onRenderElement.accept(element);
         }

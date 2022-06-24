@@ -1,7 +1,7 @@
 package me.sploky.ssm.gui;
 
-import me.sploky.ssm.SplokysSkyblockMod;
 import me.sploky.ssm.elements.Element;
+import me.sploky.ssm.elements.ElementData;
 import me.sploky.ssm.gui.buttons.ElementBaseButton;
 import me.sploky.ssm.gui.buttons.ElementButton;
 import me.sploky.ssm.gui.buttons.ElementCornerButton;
@@ -10,6 +10,7 @@ import me.sploky.ssm.gui.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import org.json.simple.JSONObject;
 import org.lwjgl.input.Mouse;
 
 import javax.vecmath.Vector2f;
@@ -77,9 +78,7 @@ public class SplokysGui extends GuiScreen {
 
             elementOffset = new Vector2f(element.getScreenPositionX() - mouseX, element.getScreenPositionY() - mouseY);
         } else if (button.id == 1) {
-            SplokysSkyblockMod.main.elements.add(new Element(m2MenuX, m2MenuY, 50, 50));
-            clearRightClickMenu();
-            createButtons();
+            createElement();
         } else if (button.id == 2) {
            Minecraft.getMinecraft().displayGuiScreen((new ElementEditGui(m2MenuElement)));
         }
@@ -130,6 +129,7 @@ public class SplokysGui extends GuiScreen {
         }
     }
 
+
     protected void moveCorner(int x, int y, Element element) {
         int diffX = Math.abs(x - element.getScreenPositionX());
         element.sizeX = diffX * 2;
@@ -140,7 +140,7 @@ public class SplokysGui extends GuiScreen {
     protected void createButtons() {
         elementButtons.clear();
 
-        for (Element element : SplokysSkyblockMod.main.elements) {
+        for (Element element : ElementData.ELEMENTS) {
             elementButtons.add(new ElementCornerButton(element, 0));
             elementButtons.add(new ElementCornerButton(element, 1));
             elementButtons.add(new ElementCornerButton(element, 2));
@@ -175,5 +175,12 @@ public class SplokysGui extends GuiScreen {
         buttonList.clear();
         buttonList.addAll(elementButtons);
         buttonList.addAll(m2MenuButtons);
+    }
+
+    protected void createElement() {
+        Element element = new Element(m2MenuX, m2MenuY, 50, 50);
+        ElementData.ELEMENTS.add(element);
+        clearRightClickMenu();
+        createButtons();
     }
 }
