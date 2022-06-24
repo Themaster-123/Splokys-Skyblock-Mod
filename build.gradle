@@ -43,7 +43,8 @@ dependencies {
     // include "com.example:example:1.0.0"
     include 'com.github.HypixelDev.PublicAPI:hypixel-api:4.2'
     include 'net.hypixel:hypixel-api-transport-apache:4.2'
-    implementation 'com.squareup:javapoet:1.13.0'
+    include group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
 }
 
 /**
