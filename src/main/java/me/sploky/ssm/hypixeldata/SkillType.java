@@ -11,7 +11,8 @@ public enum SkillType {
     CARPENTRY("Carpentry"),
     RUNECRAFTING("Runecrafting"),
     SOCIAL("Social"),
-    TAMING("Taming");
+    TAMING("Taming"),
+    CATACOMBS("Catacombs");
 
     public final String name;
 
