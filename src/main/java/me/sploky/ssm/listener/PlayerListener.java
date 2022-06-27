@@ -11,6 +11,7 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.lwjgl.Sys;
 
 public class PlayerListener {
     @SubscribeEvent
@@ -73,6 +74,14 @@ public class PlayerListener {
                 }
 
                 SkillData.getSkill(SkillType.valueOf(skillName.toUpperCase())).setLevel(level);
+                return;
+            }
+
+            if (message.trim().startsWith("+") && message.trim().endsWith("Catacombs Experience")) {
+                int xp = (int)Float.parseFloat(message.replaceAll("[^\\d.]+", ""));
+                System.out.println(Integer.toString(xp));
+
+                SkillData.getSkill(SkillType.CATACOMBS).addXp(xp);
             }
         }
 
