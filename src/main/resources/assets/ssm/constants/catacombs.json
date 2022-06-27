@@ -1,6 +1,5 @@
 {
-  "CATACOMBS": {
-    "Name": "Catacombs",
+    "name": "Catacombs",
     "maxLevel": 50,
     "levels": [
       {
@@ -204,5 +203,4 @@
         "totalExpRequired": 569809640.0
       }
     ]
-  }
 }

@@ -1,7 +1,6 @@
 package me.sploky.ssm.hypixeldata;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import me.sploky.ssm.SplokysSkyblockMod;
 import me.sploky.ssm.configs.Config;
 import me.sploky.ssm.elements.ElementTextDecoder;
@@ -12,8 +11,12 @@ import net.hypixel.api.reply.skyblock.SkyBlockProfilesReply;
 import net.hypixel.api.util.ResourceType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.IThreadListener;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import org.apache.commons.io.IOUtils;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.UUID;
 
 public final class HypixelUtils {
@@ -49,6 +52,7 @@ public final class HypixelUtils {
 
     public static void fetchData() {
         dataHeld = 0;
+
         ElementTextDecoder.numberDecodeMap.clear();
 
 
@@ -57,7 +61,21 @@ public final class HypixelUtils {
         IThreadListener mainThread = FMLCommonHandler.instance().getWorldThread(Minecraft.getMinecraft().getNetHandler());
 
         API.getResource(ResourceType.SKYBLOCK_SKILLS).thenAccept(resourceReply -> mainThread.addScheduledTask(() ->
-        {SKYBLOCK_SKILLS = resourceReply; dataHeld++; getData();}));
+        {SKYBLOCK_SKILLS = resourceReply;
+            try {
+
+                Gson gson = new Gson();
+                JsonElement jsonElement = gson.fromJson(new InputStreamReader(Minecraft.getMinecraft().getResourceManager().getResource(
+                        new ResourceLocation(SplokysSkyblockMod.MODID, "constants/catacombs.json")).getInputStream()), JsonElement.class);
+
+
+                SKYBLOCK_SKILLS.getResponse().getAsJsonObject("skills").add("CATACOMBS",jsonElement);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            dataHeld++;
+            getData();}));
 
         HypixelUtils.API.getSkyBlockProfiles(Minecraft.getMinecraft().thePlayer.getUniqueID()).
                 thenAccept(skyBlockProfilesReply -> mainThread.addScheduledTask(() ->

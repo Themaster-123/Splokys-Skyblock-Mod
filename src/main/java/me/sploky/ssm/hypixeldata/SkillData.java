@@ -21,6 +21,7 @@ public class SkillData implements HypixelData {
     public static Skill RUNECRAFTING_XP = null;
     public static Skill SOCIAL_XP = null;
     public static Skill TAMING_XP = null;
+    public static Skill CATACOMBS_XP = null;
 
 
     private static final HashMap<SkillType, Skill> SKILLS = new HashMap<>();
@@ -32,11 +33,20 @@ public class SkillData implements HypixelData {
         for (Field field : SkillData.class.getDeclaredFields()) {
             if (Modifier.isPublic(field.getModifiers()) && Modifier.isStatic(field.getModifiers())) {
                 String skillName = field.getName().split("_")[0];
-                String expName = skillName.equals("SOCIAL") ? "experience_skill_social2" : "experience_skill_" + skillName.toLowerCase();
                 SkillType skillType = SkillType.valueOf(skillName.toUpperCase());
 
-                int xp = HypixelUtils.CURRENT_SKYBLOCK_PLAYER.get(expName) == null ? 0 :
-                        (int) HypixelUtils.CURRENT_SKYBLOCK_PLAYER.get(expName).getAsFloat();
+                int xp;
+
+                if (skillType == SkillType.CATACOMBS) {
+                    xp = (int) HypixelUtils.CURRENT_SKYBLOCK_PLAYER.get("dungeons").getAsJsonObject().get("dungeon_types").getAsJsonObject().get("catacombs").
+                            getAsJsonObject().get("experience").getAsFloat();
+                } else {
+                    String expName = skillName.equals("SOCIAL") ? "experience_skill_social2" : "experience_skill_" + skillName.toLowerCase();
+
+                    xp = HypixelUtils.CURRENT_SKYBLOCK_PLAYER.get(expName) == null ? 0 :
+                            (int) HypixelUtils.CURRENT_SKYBLOCK_PLAYER.get(expName).getAsFloat();
+                }
+
                 Skill skill = new Skill(xp, skillType);
 
                 try {
@@ -46,8 +56,9 @@ public class SkillData implements HypixelData {
                     System.out.println(skillName.toLowerCase() + " xp");
 
                     ElementTextDecoder.numberDecodeMap.put(skillName.toLowerCase() + " xp", () -> (float) skill.getXp());
-                    ElementTextDecoder.numberDecodeMap.put(skillName.toLowerCase() + " progress", () -> (float) skill.progress);
+                    ElementTextDecoder.numberDecodeMap.put(skillName.toLowerCase() + " progress", () -> skill.progress * skill.getXpNeeded());
                     ElementTextDecoder.numberDecodeMap.put(skillName.toLowerCase() + " level", () -> (float) skill.level);
+                    ElementTextDecoder.numberDecodeMap.put(skillName.toLowerCase() + " xp needed", () -> (float) skill.getXpNeeded());
 
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException(e);
