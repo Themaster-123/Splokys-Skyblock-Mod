@@ -22,7 +22,9 @@ import java.util.List;
 
 public class SplokysGui extends GuiScreen {
     public static int M2_MENU_SIZE_X = 100;
-    public static int M2_MENU_SIZE_Y = 30;
+    public static int M2_MENU_SIZE_Y = 55;
+
+    protected static int M2_MENU_PADDING = 5;
 
     protected boolean isHoldingCorner = false;
     protected Element currentlyHeldElement = null;
@@ -81,6 +83,8 @@ public class SplokysGui extends GuiScreen {
             createElement();
         } else if (button.id == 2) {
            Minecraft.getMinecraft().displayGuiScreen((new ElementEditGui(m2MenuElement)));
+        } else if (button.id == 3) {
+            removeElement(m2MenuElement);
         }
     }
 
@@ -115,6 +119,8 @@ public class SplokysGui extends GuiScreen {
             }
 
             createRightClickMenu(mouseX, mouseY, false);
+        } else if (mouseButton == 0) {
+            clearRightClickMenu();
         }
     }
 
@@ -159,7 +165,12 @@ public class SplokysGui extends GuiScreen {
         m2MenuY = y;
         int buttonSize = (int) (M2_MENU_SIZE_X * .9);
         m2MenuButtons.add(new GuiButton(editElement ? 2 : 1, x + (M2_MENU_SIZE_X - buttonSize) / 2,
-                y + (M2_MENU_SIZE_X - buttonSize) / 2, buttonSize, 20, editElement ? "Edit Element" : "Create Element"));
+                y + M2_MENU_PADDING, buttonSize, 20, editElement ? "Edit Element" : "Create Element"));
+        if (editElement) {
+            m2MenuButtons.add(new GuiButton(3, x + (M2_MENU_SIZE_X - buttonSize) / 2,
+                    y + 20 + M2_MENU_PADDING * 2, buttonSize, 20, "Remove Element"));
+        }
+        M2_MENU_SIZE_Y = m2MenuButtons.size() * 20 + ((m2MenuButtons.size() * 2 - (m2MenuButtons.size() - 1)) * M2_MENU_PADDING);
 
         mergeButtons();
     }
@@ -180,6 +191,12 @@ public class SplokysGui extends GuiScreen {
     protected void createElement() {
         Element element = new Element(m2MenuX, m2MenuY, 50, 50);
         ElementData.ELEMENTS.add(element);
+        clearRightClickMenu();
+        createButtons();
+    }
+
+    protected void removeElement(Element element) {
+        ElementData.ELEMENTS.remove(element);
         clearRightClickMenu();
         createButtons();
     }

@@ -5,6 +5,7 @@ import me.sploky.ssm.commands.GuiCommand;
 import me.sploky.ssm.elements.Element;
 import me.sploky.ssm.elements.ElementData;
 import me.sploky.ssm.elements.ElementTextDecoder;
+import me.sploky.ssm.hypixeldata.DungeonData;
 import me.sploky.ssm.hypixeldata.HypixelData;
 import me.sploky.ssm.hypixeldata.HypixelUtils;
 import me.sploky.ssm.hypixeldata.SkillData;
@@ -64,6 +65,7 @@ public class SplokysSkyblockMod {
 
     private void registerData() {
         registerData(new SkillData());
+        registerData(new DungeonData());
     }
 
     private void registerCommands() {
