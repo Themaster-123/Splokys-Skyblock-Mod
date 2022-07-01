@@ -1,9 +1,6 @@
 package me.sploky.ssm.listener;
 
-import me.sploky.ssm.hypixeldata.HypixelData;
-import me.sploky.ssm.hypixeldata.HypixelUtils;
-import me.sploky.ssm.hypixeldata.SkillData;
-import me.sploky.ssm.hypixeldata.SkillType;
+import me.sploky.ssm.hypixeldata.*;
 import me.sploky.ssm.utils.MathUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.EnumChatFormatting;
@@ -79,14 +76,28 @@ public class PlayerListener {
 
             if (message.trim().startsWith("+") && message.trim().endsWith("Catacombs Experience")) {
                 int xp = (int)Float.parseFloat(message.replaceAll("[^\\d.]+", ""));
-                System.out.println(Integer.toString(xp));
 
                 SkillData.getSkill(SkillType.CATACOMBS).addXp(xp);
+                return;
             }
+
+            updateDungeonFloorData(message);
         }
+    }
 
+    private void updateDungeonFloorData(String message) {
+        boolean floorComp = message.trim().startsWith("The Catacombs - ");
+        boolean isMaster = message.trim().startsWith("Master Mode Catacombs - ");
+        floorComp = floorComp || isMaster;
+        if (floorComp) {
+            String floorName = message.trim().replace("The Catacombs - ", "").replace("Master Mode Catacombs - ", "").replace("Floor ", "");
 
+            if (floorName.equalsIgnoreCase("Entrance")) {
+                DungeonData.addFloorCompletion(0, 1);
+            } else {
+                DungeonData.addFloorCompletion(MathUtils.romanToNumber(floorName) + (isMaster ? 8 : 0), 1);
+            }
 
-
+        }
     }
 }
