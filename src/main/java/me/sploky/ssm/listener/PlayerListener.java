@@ -82,6 +82,7 @@ public class PlayerListener {
             }
 
             updateDungeonFloorData(message);
+            updateCollectionData(message);
         }
     }
 
@@ -98,6 +99,14 @@ public class PlayerListener {
                 DungeonData.addFloorCompletion(MathUtils.romanToNumber(floorName) + (isMaster ? 8 : 0), 1);
             }
 
+        }
+    }
+
+    private void updateCollectionData(String message) {
+        message = message.trim();
+        if (message.startsWith("COLLECTION LEVEL UP")) {
+            String collectionName = message.split(" ")[3];
+             CollectionData.getCollection(collectionName).tier++;
         }
     }
 }

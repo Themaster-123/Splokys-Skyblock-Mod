@@ -5,10 +5,7 @@ import me.sploky.ssm.commands.GuiCommand;
 import me.sploky.ssm.elements.Element;
 import me.sploky.ssm.elements.ElementData;
 import me.sploky.ssm.elements.ElementTextDecoder;
-import me.sploky.ssm.hypixeldata.DungeonData;
-import me.sploky.ssm.hypixeldata.HypixelData;
-import me.sploky.ssm.hypixeldata.HypixelUtils;
-import me.sploky.ssm.hypixeldata.SkillData;
+import me.sploky.ssm.hypixeldata.*;
 import me.sploky.ssm.listener.PlayerListener;
 import me.sploky.ssm.listener.RenderListener;
 import me.sploky.ssm.listener.ServerListener;
@@ -66,6 +63,7 @@ public class SplokysSkyblockMod {
     private void registerData() {
         registerData(new SkillData());
         registerData(new DungeonData());
+        registerData(new CollectionData());
     }
 
     private void registerCommands() {

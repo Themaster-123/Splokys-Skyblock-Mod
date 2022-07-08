@@ -20,7 +20,7 @@ import java.io.InputStreamReader;
 import java.util.UUID;
 
 public final class HypixelUtils {
-    private static final int DATA_AMOUNT = 2;
+    private static final int DATA_AMOUNT = 3;
     private static UUID API_KEY = null;
     private static int dataHeld = 0;
     public static HypixelAPI API;
@@ -31,6 +31,8 @@ public final class HypixelUtils {
 
     public static SkyBlockProfilesReply SKYBLOCK_PROFILES;
     public static ResourceReply SKYBLOCK_SKILLS;
+    public static ResourceReply SKYBLOCK_COLLECTION;
+
     public static JsonObject CURRENT_SKYBLOCK_PROFILE;
     public static JsonObject CURRENT_SKYBLOCK_PLAYER;
 
@@ -77,9 +79,16 @@ public final class HypixelUtils {
             dataHeld++;
             getData();}));
 
+        API.getResource(ResourceType.SKYBLOCK_COLLECTIONS).thenAccept(resourceReply -> mainThread.addScheduledTask(() -> {
+            SKYBLOCK_COLLECTION = resourceReply;
+            dataHeld++;
+            getData();
+        }));
+
         HypixelUtils.API.getSkyBlockProfiles(Minecraft.getMinecraft().thePlayer.getUniqueID()).
                 thenAccept(skyBlockProfilesReply -> mainThread.addScheduledTask(() ->
                 {SKYBLOCK_PROFILES = skyBlockProfilesReply; dataHeld++; getCurrentProfileAndPlayer(); getData();}));
+
     }
 
     public static void getData() {
