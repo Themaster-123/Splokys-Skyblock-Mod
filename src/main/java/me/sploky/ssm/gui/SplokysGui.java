@@ -21,6 +21,7 @@ import java.util.List;
 
 
 public class SplokysGui extends GuiScreen {
+    public static Color BACKGROUND_COLOR = new Color(0, 0, 0, 86);
     public static int M2_MENU_SIZE_X = 100;
     public static int M2_MENU_SIZE_Y = 55;
 
@@ -51,7 +52,7 @@ public class SplokysGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        drawRect(0, 0, width, height, new Color(0, 0, 0, 86).getRGB());
+        drawRect(0, 0, width, height, BACKGROUND_COLOR.getRGB());
         RenderUtils.renderElements(Element.GUI_COLOR);
 
         RenderUtils.drawQuad(m2MenuX, m2MenuY, M2_MENU_SIZE_X, M2_MENU_SIZE_Y, Color.DARK_GRAY.darker(), Center.TOP_LEFT_CORNER);
