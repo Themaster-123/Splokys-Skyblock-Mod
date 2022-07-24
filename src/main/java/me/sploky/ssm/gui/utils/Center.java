@@ -23,6 +23,10 @@ public class Center {
         this.pivotY =  y;
     }
 
+    /**
+     * returns where the pivot is relative to the coords
+     * @return the pivot relative to the coords
+    */
     public Tuple<Integer, Integer> pivotCoords(int x, int y, float width, float height) {
         x -= width * pivotX;
         y -= height * (1 - pivotY);
