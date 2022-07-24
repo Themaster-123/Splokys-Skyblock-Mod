@@ -4,18 +4,19 @@ import me.sploky.ssm.elements.Element;
 import me.sploky.ssm.gui.utils.RenderUtils;
 import me.sploky.ssm.gui.SplokysGui;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class RenderListener {
-    private boolean openSplokyGui;
+    private GuiScreen nextGui;
 
     @SubscribeEvent
     public void onRender(TickEvent.RenderTickEvent event) {
-        if (openSplokyGui) {
-            Minecraft.getMinecraft().displayGuiScreen(new SplokysGui());
-            openSplokyGui = false;
+        if (nextGui != null) {
+            Minecraft.getMinecraft().displayGuiScreen(nextGui);
+            nextGui = null;
         }
     }
 
@@ -26,7 +27,7 @@ public class RenderListener {
     }
 
 
-    public void openSplokyGui() {
-        openSplokyGui = true;
+    public void openGui(GuiScreen guiScreen) {
+        nextGui = guiScreen;
     }
 }
