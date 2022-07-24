@@ -1,13 +1,11 @@
 package me.sploky.ssm.hypixeldata;
 
 import me.sploky.ssm.elements.ElementTextDecoder;
-import net.minecraft.client.Minecraft;
-import org.lwjgl.Sys;
+import me.sploky.ssm.utils.JsonUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class SkillData implements HypixelData {
     public static Skill FARMING_XP = null;
@@ -38,8 +36,8 @@ public class SkillData implements HypixelData {
                 int xp;
 
                 if (skillType == SkillType.CATACOMBS) {
-                    xp = (int) HypixelUtils.CURRENT_SKYBLOCK_PLAYER.get("dungeons").getAsJsonObject().get("dungeon_types").getAsJsonObject().get("catacombs").
-                            getAsJsonObject().get("experience").getAsFloat();
+                    xp = (int) JsonUtils.gsonNullOrDefault(HypixelUtils.CURRENT_SKYBLOCK_PLAYER.get("dungeons").getAsJsonObject().get("dungeon_types").getAsJsonObject().get("catacombs").
+                            getAsJsonObject().get("experience"), 0f).getAsFloat();
                 } else {
                     String expName = skillName.equals("SOCIAL") ? "experience_skill_social2" : "experience_skill_" + skillName.toLowerCase();
 

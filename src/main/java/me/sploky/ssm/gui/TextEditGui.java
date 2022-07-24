@@ -40,7 +40,7 @@ public class TextEditGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        drawRect(0, 0, width, height, new Color(0, 0, 0, 86).getRGB());
+        drawRect(0, 0, width, height, SplokysGui.BACKGROUND_COLOR.getRGB());
 
         RenderUtils.drawText("Edit Text", width / 2, height / 2 + 20 / 2 - 35, Color.WHITE, true, Center.CENTER);
 
