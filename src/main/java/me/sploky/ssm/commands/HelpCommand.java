@@ -1,27 +1,27 @@
 package me.sploky.ssm.commands;
 
 import me.sploky.ssm.SplokysSkyblockMod;
-import me.sploky.ssm.gui.SplokysGui;
+import me.sploky.ssm.gui.HelpGui;
+import me.sploky.ssm.gui.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 
-public class GuiCommand extends CommandBase {
+public class HelpCommand extends CommandBase {
     @Override
     public String getCommandName() {
-        return "ssmgui";
+        return "ssmhelp";
     }
 
     @Override
     public String getCommandUsage(ICommandSender sender) {
-        return "§c" + "figure it out your self idoit" + "§a" + "(just do /ssmgui)";
+        return "§a" + "/ssmhelp";
     }
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-        SplokysSkyblockMod.main.renderListener.openGui(new SplokysGui());
-
+        SplokysSkyblockMod.main.renderListener.openGui(new HelpGui());
     }
 
     @Override
