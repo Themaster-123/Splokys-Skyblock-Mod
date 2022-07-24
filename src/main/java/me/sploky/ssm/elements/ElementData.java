@@ -2,6 +2,7 @@ package me.sploky.ssm.elements;
 
 import com.google.gson.JsonArray;
 import me.sploky.ssm.configs.Config;
+import me.sploky.ssm.utils.JsonUtils;
 import net.minecraft.client.Minecraft;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,7 +15,8 @@ public final class ElementData {
     public static JSONArray ELEMENT_ARRAY;
 
     public static void loadSavedData() {
-        ELEMENT_ARRAY = (JSONArray) ELEMENT_DATA_CONFIG.jsonObject.get("elements");
+        ELEMENT_DATA_CONFIG.Load();
+        ELEMENT_ARRAY = JsonUtils.nullOrDefault(ELEMENT_DATA_CONFIG.jsonObject.get("elements"), new JSONArray() );
         for (Object o : ELEMENT_ARRAY) {
             JSONObject elementObject = (JSONObject) o;
             Element element = Element.fromJsonObject(elementObject);
