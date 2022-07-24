@@ -44,13 +44,15 @@ public class Config {
     }
 
     public void Load() {
-        BufferedReader fileReader = null;
         try {
+            FileReader fileReader = new FileReader(path);
+
             JSONParser jsonParser = new JSONParser();
             if (Files.exists(Paths.get(path)))
-                jsonObject = (JSONObject) jsonParser.parse(new FileReader(path));
+                jsonObject = (JSONObject) jsonParser.parse(fileReader);
+            fileReader.close();
         } catch (ParseException | IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
 
