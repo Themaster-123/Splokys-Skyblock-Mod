@@ -6,12 +6,13 @@ import me.sploky.ssm.configs.Config;
 import me.sploky.ssm.elements.ElementTextDecoder;
 import net.hypixel.api.HypixelAPI;
 import net.hypixel.api.apache.ApacheHttpClient;
+import net.hypixel.api.reply.AbstractReply;
 import net.hypixel.api.reply.ResourceReply;
 import net.hypixel.api.reply.skyblock.SkyBlockProfilesReply;
 import net.hypixel.api.util.ResourceType;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.IThreadListener;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.*;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.apache.commons.io.IOUtils;
 
@@ -43,14 +44,28 @@ public final class HypixelUtils {
     }
 
     @SuppressWarnings("unchecked")
-    public static void setApiKey(UUID apiKey) {
+    public static void setApiKey(UUID apiKey, boolean announce) {
         API_KEY = apiKey;
         API = new HypixelAPI(new ApacheHttpClient(apiKey));
         HYPIXEL_DATA_CONFIG.jsonObject.put("ApiKey", apiKey.toString());
         HYPIXEL_DATA_CONFIG.save();
 
+        if (announce) {
+            ChatComponentTranslation component = new ChatComponentTranslation("commands.ssmapi.success",
+                    apiKey.toString());
+            component.getChatStyle().setColor(EnumChatFormatting.GREEN);
+            Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(component);
+
+        }
+
+
         fetchData();
     }
+    @SuppressWarnings("unchecked")
+    public static void setApiKey(UUID apiKey) {
+        setApiKey(apiKey, true);
+    }
+
 
     public static void fetchData() {
         dataHeld = 0;
@@ -76,18 +91,19 @@ public final class HypixelUtils {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            dataHeld++;
+            incrementData(resourceReply);
             getData();}));
 
         API.getResource(ResourceType.SKYBLOCK_COLLECTIONS).thenAccept(resourceReply -> mainThread.addScheduledTask(() -> {
             SKYBLOCK_COLLECTION = resourceReply;
-            dataHeld++;
+            incrementData(resourceReply);
             getData();
         }));
 
         HypixelUtils.API.getSkyBlockProfiles(Minecraft.getMinecraft().thePlayer.getUniqueID()).
                 thenAccept(skyBlockProfilesReply -> mainThread.addScheduledTask(() ->
-                {SKYBLOCK_PROFILES = skyBlockProfilesReply; dataHeld++; getCurrentProfileAndPlayer(); getData();}));
+                {SKYBLOCK_PROFILES = skyBlockProfilesReply;
+                incrementData(skyBlockProfilesReply); getCurrentProfileAndPlayer(); getData();}));
 
     }
 
@@ -106,7 +122,11 @@ public final class HypixelUtils {
     public static void loadSavedData() {
         HYPIXEL_DATA_CONFIG.Load();
         if (HYPIXEL_DATA_CONFIG.jsonObject.containsKey("ApiKey"))
-            setApiKey(UUID.fromString((String)HYPIXEL_DATA_CONFIG.jsonObject.get("ApiKey")));
+            setApiKey(UUID.fromString((String)HYPIXEL_DATA_CONFIG.jsonObject.get("ApiKey")), false);
+    }
+
+    private static void incrementData(AbstractReply reply) {
+        dataHeld += reply.isSuccess() ? 1 : 0;
     }
 
     private static void getCurrentProfileAndPlayer() {
