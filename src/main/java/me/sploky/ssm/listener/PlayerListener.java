@@ -10,9 +10,14 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.Sys;
 
+import java.util.UUID;
+
 public class PlayerListener {
     @SubscribeEvent
     public void onChatReceived(ClientChatReceivedEvent event) {
+        String message = EnumChatFormatting.getTextWithoutFormattingCodes(event.message.getUnformattedText());
+
+
         if (HypixelUtils.hasAllData() && event.type == 2) {
             String hotbarMessage = EnumChatFormatting.getTextWithoutFormattingCodes(event.message.getUnformattedText());
             String[] hotbarInfo = hotbarMessage.split("     ");
@@ -36,7 +41,6 @@ public class PlayerListener {
 
             }
         } else if (event.type == 0) {
-            String message = EnumChatFormatting.getTextWithoutFormattingCodes(event.message.getUnformattedText());
 
             if (message.startsWith("You are playing on profile:") || message.startsWith("Your profile was changed to: ")) {
                 String profileName = message.replace("You are playing on profile: ", "").
@@ -84,6 +88,8 @@ public class PlayerListener {
             updateDungeonFloorData(message);
             updateCollectionData(message);
         }
+
+        grabApiKey(message);
     }
 
     private void updateDungeonFloorData(String message) {
@@ -107,6 +113,13 @@ public class PlayerListener {
         if (message.startsWith("COLLECTION LEVEL UP")) {
             String collectionName = message.split(" ")[3];
              CollectionData.getCollection(collectionName).tier++;
+        }
+    }
+
+    private void grabApiKey(String messsage) {
+        if (messsage.startsWith("Your new API key is ")) {
+            messsage = messsage.replace("Your new API key is ", "");
+            HypixelUtils.setApiKey(UUID.fromString(messsage));
         }
     }
 }
