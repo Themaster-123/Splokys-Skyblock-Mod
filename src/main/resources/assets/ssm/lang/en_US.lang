@@ -1,0 +1,2 @@
+commands.ssmapi.usage=/ssmapi [api key]
+commands.ssmapi.success=Sploky Skyblock Mod has set Api key to %d
