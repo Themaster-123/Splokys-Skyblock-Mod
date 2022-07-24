@@ -2,9 +2,12 @@ package me.sploky.ssm;
 
 import me.sploky.ssm.commands.ApiCommand;
 import me.sploky.ssm.commands.GuiCommand;
+import me.sploky.ssm.commands.HelpCommand;
 import me.sploky.ssm.elements.Element;
 import me.sploky.ssm.elements.ElementData;
 import me.sploky.ssm.elements.ElementTextDecoder;
+import me.sploky.ssm.gui.HelpCategory;
+import me.sploky.ssm.gui.HelpGui;
 import me.sploky.ssm.hypixeldata.*;
 import me.sploky.ssm.listener.PlayerListener;
 import me.sploky.ssm.listener.RenderListener;
@@ -43,6 +46,7 @@ public class SplokysSkyblockMod {
         registerCommands();
         registerData();
         ElementTextDecoder.initDecoder();
+        setHelpCategories();
         System.out.println(NAME + "Started!");
         Runtime.getRuntime().addShutdownHook(new EndHook());
 
@@ -70,5 +74,13 @@ public class SplokysSkyblockMod {
         
         ClientCommandHandler.instance.registerCommand(new GuiCommand());
         ClientCommandHandler.instance.registerCommand(new ApiCommand());
+        ClientCommandHandler.instance.registerCommand(new HelpCommand());
+    }
+
+    private void setHelpCategories() {
+        HelpGui.HELP_CATEGORIES.add(new HelpCategory("Collection", "(§eCollection Name§r) §aTier", "(§eCollection Name§r) §aMax Tier"));
+        HelpGui.HELP_CATEGORIES.add(new HelpCategory("Skill", "(§eSkill Name§r) §aXp", "(§eSkill Name§r) §aProgress", "(§eSkill Name§r) §aLevel",
+                "(§eSkill Name§r) §aXp Needed"));
+        HelpGui.HELP_CATEGORIES.add(new HelpCategory("Dungeons", "[§eFloor§r/§eMaster§r] (§eFloor Level§r) §aComps"));
     }
 }
