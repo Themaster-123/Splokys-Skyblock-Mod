@@ -78,8 +78,8 @@ public class Element implements Cloneable {
         RenderUtils.drawQuad(getScreenPositionX(), getScreenPositionY(),
                 sizeX, sizeY, baseColor, Center.CENTER);
 
-        RenderUtils.drawText(getTrueText(), getScreenPositionX(),
-                getScreenPositionY() + sizeY / 2, sizeX, sizeX, textColor, true, Center.BOTTOM_CENTER);
+        RenderUtils.drawText(getTrueText(), getScreenPositionX() - sizeX / 2,
+                getScreenPositionY() + sizeY / 2, sizeX, textColor, true, Center.BOTTOM_LEFT_CORNER);
 
     }
 

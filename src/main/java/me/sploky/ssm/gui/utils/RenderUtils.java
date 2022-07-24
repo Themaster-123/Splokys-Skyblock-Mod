@@ -47,18 +47,19 @@ public class RenderUtils {
         resetGlOptions();
     }
 
-    public static  void drawText(String text, int x, int y, int maxSize, int minSize, Color color, boolean dropShadow, Center centerType) {
+    public static void drawText(String text, int x, int y, int maxSize, Color color, boolean dropShadow, Center centerType ) {
         getCurrentGlOptions();
 
         FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
 
         GlStateManager.pushMatrix();
 
-        int textScale = Math.max(fontRenderer.getStringWidth(text), minSize);
+        int textScale = fontRenderer.getStringWidth(text);
+        int maxedScale = Math.max(textScale, maxSize);
 
-        if (maxSize != -1) {
+        if (maxSize >= 0) {
             ScaledResolution currentResolution = new ScaledResolution(Minecraft.getMinecraft());
-            float changedAmount = (textScale != 0 ? 1f / textScale : 0) * maxSize;
+            float changedAmount = (maxedScale != 0 ? 1f / maxedScale : 0) * maxSize;
             float widthOffset = 0;
             float heightOffset = 0;
 
@@ -84,7 +85,7 @@ public class RenderUtils {
     }
 
     public static  void drawText(String text, int x, int y, Color color, boolean dropShadow, Center centerType) {
-        drawText(text, x, y, -1, 0, color, dropShadow, centerType);
+        drawText(text, x, y, -1, color, dropShadow, centerType);
     }
 
     public static  void getCurrentGlOptions() {
