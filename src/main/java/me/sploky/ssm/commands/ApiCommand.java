@@ -1,10 +1,14 @@
 package me.sploky.ssm.commands;
 
+import me.sploky.ssm.SplokysSkyblockMod;
 import me.sploky.ssm.hypixeldata.HypixelUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.EnumChatFormatting;
 
 import java.util.UUID;
 
@@ -22,9 +26,8 @@ public class ApiCommand extends CommandBase {
     @Override
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
         try {
-            System.out.println(args[0]);
             UUID apiKey = UUID.fromString(args[0]);
-            notifyOperators(sender, this, "commands.ssmapi.success", apiKey);
+
             HypixelUtils.setApiKey(apiKey);
         } catch (IllegalArgumentException e) {
             throw new WrongUsageException("commands.ssmapi.usage");
